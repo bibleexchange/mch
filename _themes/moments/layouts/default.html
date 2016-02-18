@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+		<title>
+			{{ _site_name }}
+			{{ if segment_1 }}
+			– {{ title }}
+			{{ endif }}
+		</title>
+		<!-- styles -->
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,600|Arvo' rel='stylesheet' type='text/css'>
+		{{ theme:css tag="true" }}
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="//connect.soundcloud.com/sdk.js"></script>
+		{{ theme:js tag="true" }}
+	</head>
+	<body>
+		<div class="container">
+			<div class="title-box">
+				<div class="logo">
+				</div>
+				<div class="verticle-center">
+					<h1>{{ title }}</h1>
+				</div>
+			</div>
+			<div class="audio-player">
+				<div class="soundcloud">
+					<button id="play-pause-btn"></button>
+				</div>
+			</div>
+			<article class="main-content">
+				{{ content}}
+			</article>
+			<div class="audio-player-replacement">
+			</div>
+			<footer>
+				<p>Copyright 2015 Deliverance Center</p>
+			</footer>
+		</div>
+	</body>
+	<script>
+		$(window).scroll(function() {   
+			var footerHeight = $('footer').height();
+				
+			if($(window).scrollTop() + $(window).height() > $(document).height() - footerHeight) {
+				$('.audio-player').css({'position':'relative'});
+				$('.audio-player-replacement').css({'display':'none'});
+   			} else {
+	   			$('.audio-player').css({'position':'fixed'})
+	   			$('.audio-player-replacement').css({'display':'block'});
+   			}
+		});
+	</script>
+</html>
